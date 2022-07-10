@@ -93,7 +93,7 @@ Node *buildTree(string str) {
 class Solution {
   public:
   
-  int countNodes(struct Node* root){
+  int countNodes(  Node* root){
       
       if(root == NULL)
         return 0 ;
@@ -103,7 +103,7 @@ class Solution {
       
   }
   
-  bool isCBT(struct Node* root , int i, int countNodes){
+  bool isCBT( Node* root , int i, int countNodes){
       
       if(root==NULL)
         return true;
@@ -121,7 +121,7 @@ class Solution {
       
   }
   
-  bool isMaxOrder(struct Node* root ){
+  bool isMaxOrder(  Node* root ){
       
         //
       
@@ -150,7 +150,7 @@ class Solution {
       
   }
   
-    bool isHeap(struct Node* root) {
+    bool isHeap(  Node* root) {
         // code here
         int totalCount = countNodes(root);
         
