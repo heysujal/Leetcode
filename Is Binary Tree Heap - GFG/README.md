@@ -1,5 +1,5 @@
 # Is Binary Tree Heap
-##  Easy 
+## Easy 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given a binary tree. The task is to check whether the given tree follows the&nbsp;<strong>max heap</strong> property or not.<br>
 <strong>Note:&nbsp;</strong>Properties of a tree to be a max heap - Completeness and Value of node greater than or equal to its child.</span></p>
