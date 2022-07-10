@@ -108,13 +108,13 @@ class Solution {
       if(root==NULL)
         return true;
         
-      if(i >= countNodes)
+      if(i > countNodes)
         return false;
         
       else{
-         return isCBT(root -> left , 2*i+1, countNodes)
+         return isCBT(root -> left , 2*i, countNodes)
                     and 
-                    isCBT(root -> right , 2*i+2, countNodes)
+                    isCBT(root -> right , 2*i+1, countNodes)
                   ;
                   
       }
@@ -158,7 +158,7 @@ class Solution {
          return true;
         // if both CBT and max order property
         
-        return isCBT(root, 0 , totalCount) and isMaxOrder(root);
+        return isCBT(root, 1 , totalCount) and isMaxOrder(root);
         
         
         
