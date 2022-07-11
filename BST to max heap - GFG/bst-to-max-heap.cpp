@@ -106,34 +106,11 @@ void postorderTraversal(Node* root)
 
 class Solution{
   public:
-    
-    int index = 0 ;
-    
-  
-   void inOrder(Node* root, vector<int>& res){
-        if(root==NULL) return;
-        inOrder(root->left, res);
-        res.push_back(root->data);
-        inOrder(root->right, res);
-    }
-    
-    void toMaxHeap(Node* root , vector<int>& inorder, int idx){
-        
-         index = idx;
-        
-        if(  root==NULL)
-            return;
-            
-        root -> data = inorder[index];
-        index--;
-        
-        toMaxHeap(root->right, inorder, index);
-        toMaxHeap(root->left, inorder, index);
-        
-        
-        
-    }
-    void printLevelOrder(Node* root)
+         
+         int index  = 0;
+         
+ 
+        void printLevelOrder(Node* root)
 {
     // Base Case
     if (root == NULL)
@@ -160,6 +137,31 @@ class Solution{
             q.push(node->right);
     }
 }
+  
+   void inOrder(Node* root, vector<int>& res){
+        if(root==NULL) return;
+        inOrder(root->left, res);
+        res.push_back(root->data);
+        inOrder(root->right, res);
+    }
+    
+      void toMaxHeap(Node* root , vector<int>& inorder,int idx){
+        
+         index = idx;
+        
+        if(  root==NULL)
+            return;
+            
+        root -> data = inorder[index];
+        index--;
+        
+        toMaxHeap(root->right, inorder, index);
+        toMaxHeap(root->left, inorder, index);
+        
+        
+        
+    }
+
  
     void convertToMaxHeapUtil(Node* root)
     {
@@ -168,8 +170,9 @@ class Solution{
         vector<int> inorder;
         
         inOrder(root, inorder);
+         
         // Since inorder is sorted in ascending order I am using it from last index
-        toMaxHeap(root, inorder, inorder.size() -1 );
+        toMaxHeap(root, inorder,inorder.size() -1 );
         
         // cout<<endl;
         
