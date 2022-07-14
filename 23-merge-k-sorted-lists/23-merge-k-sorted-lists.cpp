@@ -12,8 +12,8 @@ class Solution {
 public:
     ListNode* mergeKLists(vector<ListNode*>& lists) {
         
-        if(lists.size()==0)
-            return NULL;
+        // if(lists.size()==0)
+        //     return NULL;
         
         vector<int> ans;
         
@@ -33,6 +33,7 @@ public:
         
         sort(ans.begin(), ans.end());
         
+        // Make a new list
         
         ListNode* ptr = new ListNode();
         ListNode* aux  = ptr;
@@ -46,6 +47,16 @@ public:
             ptr = ptr->next;
         
         }
+        
+           return aux->next;
+        
+        
+        
+        
+        
+        
+        
+        
 //         //Join all lists
         
 //         int k = lists.size();
