@@ -41,15 +41,10 @@ public:
         
         for(auto x: ans){
            
-            ListNode* temp = new ListNode(x);
-            
-            temp->next = NULL;
-            ptr -> next = temp;
+            ListNode* newNode = new ListNode(x);
+            ptr -> next = newNode;
             ptr = ptr->next;
-            
-            
-            
-            
+        
         }
 //         //Join all lists
         
