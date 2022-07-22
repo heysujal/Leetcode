@@ -11,7 +11,7 @@ public:
         for(auto x:  s)
         {
             
-            if(isalpha(x) or isdigit(x))
+            if(isalnum(x))
                 temp+= tolower(x);
             
         }
