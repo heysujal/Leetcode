@@ -8,9 +8,9 @@ public:
          
         
         reverse(s.begin(), s.end());
-        int num = stoll(s);
+       
         
-        return num == x ;
+        return s == to_string(x) ;
         
         
     }
