@@ -12,8 +12,8 @@ public:
           
           if(k > n-i+1)
               return;
-        if(i>n)
-            return;
+          if(i>n)
+              return;
       
        //pick
        subset.push_back(i);
@@ -33,9 +33,6 @@ public:
         
         vector<int> subset;
         vector<vector<int>> ans;
-        
-       
-        
         solve(1, n ,k , subset, ans);
         return ans;
         
