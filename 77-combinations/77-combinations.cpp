@@ -4,16 +4,16 @@ public:
       void  solve( int i, int n , int k , vector<int> &subset, vector<vector<int>>&ans )
         
     {         
-         if(k==0 )
-        {
-            ans.push_back(subset);     
-            return;
-        }
+        
           
-          if(k > n-i+1)
-              return;
+//           if(k > n-i+1)
+//               return;
           if(i>n)
-              return;
+          {
+               if(k==0 )
+                  ans.push_back(subset);     
+          return;
+          } 
       
        //pick
        subset.push_back(i);
