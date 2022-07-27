@@ -9,7 +9,9 @@ public:
             ans.push_back(subset);     
             return;
         }
-            
+          
+          if(k > n-i+1)
+              return;
         if(i>n)
             return;
       
