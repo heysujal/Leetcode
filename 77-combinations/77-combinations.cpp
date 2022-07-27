@@ -1,28 +1,28 @@
 class Solution {
 public:
     
-      void  solve( int i, int n , int k , vector<int> &subset, vector<vector<int>>&ans )
+      void  solve(vector<int> &nums,int i, int n , int k , vector<int> &subset, vector<vector<int>>&ans )
         
     {         
-        
-          
-//           if(k > n-i+1)
-//               return;
-          if(i>n)
-          {
-               if(k==0 )
-                  ans.push_back(subset);     
-          return;
-          } 
+         if(k==0 )
+        {
+            ans.push_back(subset);     
+              return;
+        }
+            
+        if(i==n)
+            return;
+        if(k > n-i)
+            return ;
       
        //pick
-       subset.push_back(i);
-       solve(   i+1, n , k-1, subset, ans);
+       subset.push_back(nums[i]);
+       solve( nums,  i+1, n , k-1, subset, ans);
        subset.pop_back();
        
        // skip
       
-       solve( i+1, n , k ,subset, ans);
+       solve(nums,i+1, n , k ,subset, ans);
         
         
         
@@ -33,7 +33,11 @@ public:
         
         vector<int> subset;
         vector<vector<int>> ans;
-        solve(1, n ,k , subset, ans);
+        
+        vector<int> nums(n);
+        iota(nums.begin(), nums.end(), 1);
+        
+        solve(nums ,0, n ,k , subset, ans);
         return ans;
         
     }
