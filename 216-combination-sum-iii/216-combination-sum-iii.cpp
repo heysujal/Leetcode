@@ -2,7 +2,7 @@ class Solution {
 public:
     
     
-       void help(int i , vector<int> &nums,int k, int &sumtillnow,int &target,  vector<int> &subset, vector<vector<int>> &ans)
+       void help(int i ,int k, int &sumtillnow,int &target,  vector<int> &subset, vector<vector<int>> &ans)
         
     {
         
@@ -13,23 +13,23 @@ public:
             
         }
         
-        if(k > nums.size()-i or sumtillnow > target)
+        if(k > 10-i or sumtillnow > target)
             return ;
-        if(i == nums.size())
+        if(i == 10)
             return ;
      
         
     
         
-        help(i+1, nums  ,k, sumtillnow,target , subset, ans);
+        help(i+1  ,k, sumtillnow,target , subset, ans);
       
         
         // pick element
-        subset.push_back(nums[i]);
-        sumtillnow += nums[i];
+        subset.push_back(i);
+        sumtillnow += i;
            
-        help(i+1,nums ,k-1,sumtillnow , target , subset, ans );
-        sumtillnow -= nums[i];
+        help(i+1 ,k-1,sumtillnow , target , subset, ans );
+        sumtillnow -= i;
         subset.pop_back();
         
             
@@ -46,12 +46,12 @@ public:
         int sumtillnow = 0;
         
        
-        vector<int> nums(9);
-        iota(nums.begin(), nums.end() , 1);
+        // vector<int> nums(9);
+        // iota(nums.begin(), nums.end() , 1);
         
         
         
-        help(0 ,nums,k , sumtillnow,n,subset , ans );
+        help(1 ,k , sumtillnow,n,subset , ans );
         
         
         return ans;
