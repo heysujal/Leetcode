@@ -28,25 +28,33 @@ int getLen(ListNode *head)
 
 ListNode* nthNodeFromLast(ListNode *head, int n)
 {
-    int len = getLen(head);
-    
-    if (head == nullptr or n > len)
-            return NULL;
-
-    int times = len - n;
-    if(times==0)
+    int len =  getLen(head);
+    if(len-n==0)
         return head->next;
-    ListNode *curr = head;
+    if (head == NULL or n > getLen(head) or n < 0)
+            return head;
 
-    ListNode *ptr = head;
-    while (times--)
-    {   ptr = curr;
-        curr = curr->next;
-      
+    ListNode *first = head;
+    ListNode *second = head;
+
+    while (n--)
+    {
+
+        first = first->next;
     }
-    
-    ptr -> next = curr->next;
+    ListNode *ptr = NULL;
+
+    while (first != NULL)
+    {
+        first = first->next;
+        ptr = second;
+        second = second->next;
+    }
+
+    ptr->next = second->next;
     return head;
+    
+   
      
 }
     ListNode* removeNthFromEnd(ListNode* head, int n) {
