@@ -10,26 +10,43 @@
  */
 class Solution {
 public:
-    ListNode* mergeTwoLists(ListNode* a, ListNode* b) {
-         ListNode* result = NULL; 
+    ListNode* mergeTwoLists(ListNode* p, ListNode* q) {
       
-    /* Base cases */
-    if (a == NULL) 
-        return(b); 
-    else if (b == NULL) 
-        return(a); 
-      
-    /* Pick either a or b, and recur */
-    if (a->val <= b->val) 
-    { 
-        result = a; 
-        result->next = mergeTwoLists(a->next, b); 
-    } 
-    else
-    { 
-        result = b; 
-        result->next = mergeTwoLists(a, b->next); 
-    } 
-    return(result); 
+        if(!p and !q)
+            return p;
+        if(!p and q)
+            return q;
+        if(p and !q)
+            return p;
+        
+        ListNode *ans = new ListNode;
+        ListNode *temp = ans;
+        while(p and q)
+        {
+            
+            if(p->val <= q->val)
+            {
+                temp->next = p;
+                temp = temp->next;
+                
+                p = p->next;
+                
+            }
+            else{
+                temp->next = q;
+                temp=temp->next;
+                q= q->next;
+            }
+            
+        }
+        
+        if(p)
+            temp->next = p;
+        if(q)
+            temp->next = q;
+        
+        
+        return ans->next;
+            
     }
 };
