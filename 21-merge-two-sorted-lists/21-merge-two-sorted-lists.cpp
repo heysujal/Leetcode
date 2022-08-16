@@ -11,13 +11,7 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* p, ListNode* q) {
-      
-        if(!p and !q)
-            return p;
-        if(!p and q)
-            return q;
-        if(p and !q)
-            return p;
+     
         
         ListNode *ans = new ListNode;
         ListNode *temp = ans;
