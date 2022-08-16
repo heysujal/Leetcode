@@ -79,12 +79,11 @@ public:
         }
         else{
          
-            if(following)
-            {
+            
                
                ptr1->next = following;
                 
-            }
+          
                
            return ptr2;
             
