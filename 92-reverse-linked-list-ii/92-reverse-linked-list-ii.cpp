@@ -35,7 +35,7 @@ public:
         ListNode *ptr1 =head;
         int s = 1;
         ListNode *prev = NULL;
-        while(ptr1 and s!=left)
+        while(s!=left)
         {   
             prev = ptr1;
             ptr1 = ptr1 -> next;
@@ -44,34 +44,30 @@ public:
             
         }
         
-        // now either ptr1 will be null or we 
-        // will be ptr1 will be pointing to left
+        //  ptr1 will be pointing to left
         // prev is pointing to before left
         
        ListNode *ptr2 = ptr1;
         
-        while(s!=right and ptr2)
+        while(s!=right)
         {
             s++;
             ptr2=ptr2->next;
             
         }
-        // ListNode *following = NULL;
+        // ptr2 points to right
         
-         
-         ListNode *following = ptr2 -> next;
+        // following is node present after right(MAY BE NULL)
+       ListNode *following = ptr2 -> next;
         
+        // isolating left to right sublist 
+       ptr2->next = NULL;
         
-        ptr2->next = NULL;
+       //reversing the sublist 
+       reverseList(ptr1);
+       
         
-    
-         
-        reverseList(ptr1);
-        // ListNode *revHead = reverseList(ptr1);
-        
-        
-        
-        ptr1 -> next = following;
+       ptr1 -> next = following;
         if(prev)
         {
             prev->next = ptr2;
