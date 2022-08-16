@@ -10,93 +10,42 @@
  */
 class Solution {
 public:
+    
+      ListNode *merge(ListNode *p, ListNode *q)
+    {
+        
+        if(!p )
+            return q;
+        if(!q)
+            return p;
+        
+        if(p->val <= q->val)
+        {
+            p->next = merge(p->next, q);
+            return p;
+            
+        }
+        else 
+        {
+            q->next = merge(p, q->next);
+            return q;
+        }
+        
+        
+        
+    }
+    
+    
     ListNode* mergeKLists(vector<ListNode*>& lists) {
+        int val = -10001;
+        ListNode *dummy = new ListNode(val);
         
-        // if(lists.size()==0)
-        //     return NULL;
-        
-        vector<int> ans;
-        
-        for(auto head : lists){
-            //for empty LL
-            if(head==NULL)
-                continue;
-            ListNode* temp = head;
+        for(auto list : lists)
+        {
+            dummy = merge(dummy, list);
             
-            while(temp!=NULL){
-                ans.push_back(temp->val);
-                temp = temp->next;
-                
-                
-            }        
         }
-        
-        sort(ans.begin(), ans.end());
-        
-        // Make a new list
-        
-        ListNode* ptr = new ListNode();
-        ListNode* aux  = ptr;
-        
-         
-        
-        for(auto x: ans){
-           
-            ListNode* newNode = new ListNode(x);
-            ptr -> next = newNode;
-            ptr = ptr->next;
-        
-        }
-        
-           return aux->next;
-        
-        
-        
-        
-        
-        
-        
-        
-//         //Join all lists
-        
-//         int k = lists.size();
-//         k--; // we don't need to do process below for last list
-//         int i  = 0;
-        
-//         while(k--)
-//         {
-//             ListNode* temp =  lists[i];
-//             while(temp->next!=NULL){
-//                 temp = temp->next;
-                
-//             }
-            
-//             temp -> next = lists[i+1];
-            
-            
-//         }
-        
-        
-//         ListNode* finHead = lists[0];
-//         int idx = 0;
-        
-//         while(finHead != NULL){
-//             finHead->val = ans[idx++];
-//             finHead = finHead -> next;
-            
-//         }
-        
-        
-//         for(auto x : ans){
-//         cout<<x<<" ";
-            
-//         }
-        
-        
-        
-        
-        return aux->next;
-        
+        return dummy->next;
         
     }
 };
