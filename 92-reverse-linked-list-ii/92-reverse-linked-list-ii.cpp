@@ -77,8 +77,6 @@ public:
             prev->next = ptr2;
             return head;
         }
-       
-        
         return ptr2;
         
     }
