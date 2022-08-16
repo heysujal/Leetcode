@@ -69,26 +69,17 @@ public:
         reverseList(ptr1);
         // ListNode *revHead = reverseList(ptr1);
         
+        
+        
+        ptr1 -> next = following;
         if(prev)
         {
-            
             prev->next = ptr2;
-            ptr1 -> next = following;
-        
             return head;
         }
-        else{
-         
-            
-               
-               ptr1->next = following;
-                
-          
-               
-           return ptr2;
-            
-        }
-   
+       
+        
+        return ptr2;
         
     }
 };
