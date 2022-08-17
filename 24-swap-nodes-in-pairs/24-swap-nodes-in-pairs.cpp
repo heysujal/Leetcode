@@ -10,29 +10,24 @@
  */
 class Solution {
 public:
+    
+    
+    
+    
     ListNode* swapPairs(ListNode* head) {
         
         if(!head or !head->next)
             return head;
         
+        ListNode *f = head;
+        ListNode *s = head->next;
         
-        ListNode *dummy = new ListNode();
-        dummy->next = head;
-        ListNode *prev = dummy;
-        ListNode *curr = head;
+        f->next = swapPairs(head->next->next);
+        s->next = f;
         
-        while(curr and curr->next)
-        {
-            prev->next = curr->next;
-            curr->next =    curr->next->next;
-            prev->next->next = curr;
-            
-            prev = curr;
-            curr= curr->next;
-            
-            
-        }
-        return dummy->next;
+        return s;
+        
+        
         
     }
 };
