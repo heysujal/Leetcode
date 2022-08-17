@@ -10,66 +10,29 @@
  */
 class Solution {
 public:
-     ListNode* reverseKGroup(ListNode* head, int k) {
-        
-        
-        
-        
-        if(head==NULL or head->next == NULL)
-        {   
-            return head;
-            
-        }
-         ListNode* cursor = head;
-        for(int i = 0; i < k; i++){
-            if(cursor == nullptr) return head;
-            cursor = cursor->next;
-        }
-        // reverse first k nodes
-        int count = 0 ;
-        
-        
-        ListNode* prev =NULL;
-        ListNode* curr =head;
-        ListNode* next=NULL;
-        
-        while(count<k and curr!=NULL)
-        {
-            count++;
-            next = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = next;
-        
-        }
-        
-        if(curr!=NULL)
-        {
-            
-            ListNode* rest_head = reverseKGroup(curr, k);
-            
-            head->next = rest_head;
-            
-            
-            
-        }
-            
-        
-    
-        return prev;
-        
-       
-        
-    }
     ListNode* swapPairs(ListNode* head) {
-    
-      
         
-     int k = 2;
+        if(!head or !head->next)
+            return head;
         
-        return reverseKGroup(head , k);
+        
+        ListNode *dummy = new ListNode();
+        dummy->next = head;
+        ListNode *prev = dummy;
+        ListNode *curr = head;
+        
+        while(curr and curr->next)
+        {
+            prev->next = curr->next;
+            curr->next =    curr->next->next;
+            prev->next->next = curr;
+            
+            prev = curr;
+            curr= curr->next;
+            
+            
+        }
+        return dummy->next;
         
     }
-    
-    
 };
