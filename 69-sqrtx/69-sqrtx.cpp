@@ -11,7 +11,7 @@ public:
     int high = x;
         
         
-    while(low <= high)
+    while(low < high)
     {
         int mid = low+(high-low)/2;
         
@@ -19,7 +19,7 @@ public:
         if(mid <= x/mid)
              low = mid+1;
         else
-            high = mid-1;
+            high = mid;
       
         
     }
