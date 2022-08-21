@@ -16,7 +16,7 @@ public:
         int mid = low+(high-low)/2;
         
         
-        if(mid!=0  and mid <= x/mid)
+        if(mid <= x/mid)
              low = mid+1;
         else
             high = mid-1;
