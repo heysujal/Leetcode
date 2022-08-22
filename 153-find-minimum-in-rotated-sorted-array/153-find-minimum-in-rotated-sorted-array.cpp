@@ -15,7 +15,7 @@ public:
             
             int mid = (low) +(high - low )/2;
             
-            if(mid < nums.size() and nums[mid] >= nums[0])
+            if( nums[mid] >= nums[0])
                 low =mid+1;
             
             else
