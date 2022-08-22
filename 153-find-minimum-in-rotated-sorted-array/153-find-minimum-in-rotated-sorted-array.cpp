@@ -2,9 +2,30 @@ class Solution {
 public:
     int findMin(vector<int>& nums) {
         
+        int ans = -1;
         
         
-        return *min_element(nums.begin() , nums.end());
+        int low = 0;
+        int high = nums.size()-1;
+        if(nums[0]<nums[nums.size()-1])
+            return nums[0];
+        
+        while(low < high)
+        {
+            
+            int mid = (low) +(high - low )/2;
+            
+            if(mid < nums.size() and nums[mid] >= nums[0])
+                low =mid+1;
+            
+            else
+            {    
+                 high = mid;
+            }
+           
+            
+        }
+        return nums[low];
         
     }
 };
