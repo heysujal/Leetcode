@@ -2,26 +2,26 @@ class Solution {
 public:
    int mySqrt(int x) {
   
-    int low = 0 ;
-    int high = x;
+    long long int low = 0 ;
+    long long int high = x;
         
        if(x==0 or x==1)
            return x;
         
     while(low < high)
     {
-        int mid = low+(high-low)/2;
+        long long int mid = low+(high-low)/2;
         
         
-        if(mid <= x/mid)
-             low = mid+1;
+        if(mid*mid>= x)
+             high = mid;
         else
-            high = mid;
+           low = mid+1;
       
         
     }
         
  
-    return low-1;    
+    return (x==low*low)?low:low-1;    
     }
 };
