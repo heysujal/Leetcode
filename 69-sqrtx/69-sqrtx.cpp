@@ -4,9 +4,7 @@ public:
   
     long long int low = 0 ;
     long long int high = x;
-        
-       if(x==0 or x==1)
-           return x;
+ 
         
     while(low < high)
     {
