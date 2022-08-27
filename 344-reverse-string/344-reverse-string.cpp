@@ -1,22 +1,20 @@
 class Solution {
 public:
-    
-    void solve(vector<char> &s , int low, int high){
-        if(low >= high)
-            return;
-        
-        swap(s[low], s[high]);
-        solve(s, low+1, high-1);
-        
-        
-    }
     void reverseString(vector<char>& s) {
         
+        stack<char> s2;
         
-        int low = 0;
-        int high = s.size() -1 ;
-        solve(s, low ,  high);
-        
+        for(auto x:s)
+            {
+             s2.push(x);
+            }
+        for(auto &x: s)
+        {
+            x = s2.top();
+            s2.pop();
+            
+        }
+            
         
     }
 };
