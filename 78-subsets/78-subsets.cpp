@@ -1,28 +1,30 @@
 class Solution {
 public:
     
-    vector<vector<int>> solve(vector<int> &nums, int i )
+    void solve(int i , vector<int> &nums, vector<int> &temp, vector<vector<int>> &ans )
+        
         
     {
-        if(i == nums.size() )
-            return {{}};
         
         
-      vector<vector<int>> partialAns = solve(nums, i+1);
-      vector<vector<int>> finalAns;
-        
-        for(auto x: partialAns)
-            finalAns.push_back(x);
-        
-          
-        for(auto x: partialAns)
+        if(i == nums.size())
         {
-            x.push_back(nums[i]);
-            finalAns.push_back(x);
-        } 
+            ans.push_back(temp);
+            return;
+            
+        }
         
         
-        return finalAns;
+        // pick
+        
+        temp.push_back(nums[i]);
+        solve(i+1, nums, temp, ans);
+        temp.pop_back();
+        
+        // skip
+        
+        solve(i+1, nums, temp, ans);
+        
         
         
         
@@ -30,7 +32,13 @@ public:
     
     vector<vector<int>> subsets(vector<int>& nums) {
         
-         return solve(nums, 0);
+        
+        vector<int> temp;
+        vector<vector<int>> ans;
+        
+        solve(0 , nums,temp, ans);
+        
+        return ans;
         
     }
 };
