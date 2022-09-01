@@ -1,87 +1,19 @@
 class Solution {
 public:
-       bool isValid(string s) {
-        
-        int n = s.size();
-        stack<char> st;
-        for(int i =0 ;i < n ; i++){
-             char ch = s[i];
-            
-            if(ch=='(' or ch=='[' or ch == '{'){
-                st.push(ch);
-                
-            }else{
-                //closing bracket comes in
-                if(st.empty()==true)
-                    return false;
-                
-                // when st is not empty
-                
-                char top = st.top();
-                if((top=='(' and ch==')') or (top=='[' and ch==']') or (top=='{' and ch=='}'))      {
-                    st.pop();
-                    
-                }else{
-                return false;
-                    
-                }
-                
-                
-            }
-            
-            
-            
-            
-        }
-        
-        if(st.size()==0)
-            return true;
-        return false;
-        
-        
-        
-        
-    }
-    void solve(int i ,int n, string &temp, vector<string> &ans )
+    vector<string>result;
+    
+    void helper(int open,int close,int n,string current)
     {
-        
-        if( i== 2*n)
+        if(current.length()==n*2)
         {
-            if(isValid(temp))
-                ans.push_back(temp);
-            
-            
+            result.push_back(current);
             return;
         }
-        
-        // pick )
-        
-        temp.push_back('(');
-        solve(i+1, n, temp, ans);
-        
-        //skip
-        temp.pop_back();
-        temp.push_back(')');
-        solve(i+1, n, temp, ans);
-        temp.pop_back();
-        
-        
-        
-        
+        if(open<n)  helper(open+1,close,n,current+"(");
+        if(close<open)  helper(open,close+1,n,current+")");
     }
-    
-    
     vector<string> generateParenthesis(int n) {
-        
-        
-        vector<string> ans;
-        
-         string temp;
-        
-         solve(0,n, temp, ans);
-        
-        return ans;
-        
-        
+        helper(0,0,n,"");
+        return result;
     }
 };
