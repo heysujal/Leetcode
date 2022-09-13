@@ -89,7 +89,7 @@ public:
                     int up = 0;
                     int left = 0;
                     
-                    // if(i>0)
+                    // if(i>0) Optional
                         up = prev[j];
                     if(j>0)
                         left = curr[j-1];
