@@ -67,6 +67,44 @@ public:
     
     
     
+    int solveSpace(int m , int n )
+    {
+        /// dummy or prev which is all 0 initially
+        vector<int> prev(n, 0);
+        
+        
+         for(int i = 0; i < m ; i++)
+        {
+            // for every row we make a new curr 
+             
+             vector<int> curr(n, 0);
+            
+            for(int j = 0;  j < n ; j++)
+            {
+                
+                if(i==0 and j==0) curr[j] = 1;
+                
+                else
+                {
+                    int up = 0;
+                    int left = 0;
+                    
+                    if(i>0)
+                        up = prev[j];
+                    if(j>0)
+                        left = curr[j-1];
+                    
+                    curr[j] = up + left;
+                }
+                
+                
+            }
+             
+             prev = curr;
+        }
+        
+        return prev[n-1];
+    }
     
     
     
@@ -79,7 +117,11 @@ public:
         
         
         // tabulation
-        return solveTab(m, n);
+        // return solveTab(m, n);
+        
+        // space optimization
+        
+        return solveSpace(m ,n);
         
         
     }
