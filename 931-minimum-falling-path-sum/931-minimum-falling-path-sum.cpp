@@ -110,6 +110,58 @@ public:
        return ans; 
     }
     
+    int solveSpace(vector<vector<int>>& matrix)
+        
+    {
+        
+        int n  = matrix.size();
+        
+        // dummy stores for lower row 
+        // curr stores for current row
+        
+        vector<int> dummy(n ,0);
+        vector<int> curr(n, 0);
+        
+        
+        for(int j = 0; j < n ; j++)
+            dummy[j] = matrix[n-1][j];
+        
+        
+        for(int i = n-2 ; i>=0; i--)
+        {
+            
+            for(int j = n-1; j>=0; j--)
+            {
+                int d =  INT_MAX;
+                int dr = INT_MAX;
+                int dl = INT_MAX;
+                
+                if(i+1 <= n-1) 
+                    d  =  dummy[j];
+                
+                if(i+1 <= n-1 and j+1 <= n-1)
+                    dr =  dummy[j+1];
+                
+                if(i+1 <= n-1 and j-1>=0)
+                    dl =  dummy[j-1];
+        
+                curr[j] = matrix[i][j] + min(d, min(dr, dl));
+        
+                
+            }
+            
+            dummy = curr;
+        }
+        
+        int ans = INT_MAX;
+        for(int i = 0 ; i < n ; i++)
+            ans = min(ans, dummy[i]);
+            
+       return ans; 
+        
+        
+    }
+    
     int minFallingPathSum(vector<vector<int>>& matrix) {
         
         // int n = matrix.size();
@@ -129,7 +181,9 @@ public:
         // }
         // return ans;
         
-        return solveTab(matrix);
+        // return solveTab(matrix);
+        
+        return solveSpace(matrix);
     
     }
 };
