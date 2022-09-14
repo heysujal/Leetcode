@@ -64,20 +64,72 @@ public:
     }
     
     
-    int minFallingPathSum(vector<vector<int>>& matrix) {
-        int n = matrix.size();
-        int ans = INT_MAX;
-        for(int col = 0; col < n ; col++)
+    int solveTab(vector<vector<int>>& matrix)
+    {
+        int n  = matrix.size();
+        
+        // dp[i][j] stores answer for [i][j] to last row minimum path sum
+        
+        vector<vector<int>> dp(n , vector<int>(n , 0));
+        
+        
+        for(int j = 0; j < n ; j++)
+            dp[n-1][j] = matrix[n-1][j];
+        
+        
+        for(int i = n-2 ; i>=0; i--)
         {
             
-            // int curr = solve(0 , col, matrix);
-            vector<vector<int>> dp(n , vector<int>(n , -1));
-            int curr = solveMemo(0 , col, matrix, dp);
-            
-            ans = min(ans, curr);
+            for(int j = n-1; j>=0; j--)
+            {
+                int d =  INT_MAX;
+                int dr = INT_MAX;
+                int dl = INT_MAX;
+                
+                if(i+1 <= n-1) 
+                    d  =  dp[i+1][j];
+                
+                if(i+1 <= n-1 and j+1 <= n-1)
+                    dr =  dp[i+1][j+1];
+                
+                if(i+1 <= n-1 and j-1>=0)
+                    dl =  dp[i+1][j-1];
+        
+                dp[i][j] = matrix[i][j] + min(d, min(dr, dl));
+        
+                
+            }
             
             
         }
-        return ans;
+        
+        int ans = INT_MAX;
+        for(int i = 0 ; i < n ; i++)
+            ans = min(ans, dp[0][i]);
+            
+       return ans; 
+    }
+    
+    int minFallingPathSum(vector<vector<int>>& matrix) {
+        
+        // int n = matrix.size();
+        // int ans = INT_MAX;
+        // for(int col = 0; col < n ; col++)
+        // {
+           //// Recursion
+            // int curr = solve(0 , col, matrix);
+        
+             //// Memoization
+//             vector<vector<int>> dp(n , vector<int>(n , -1));
+//             int curr = solveMemo(0 , col, matrix, dp);
+            
+//             ans = min(ans, curr);
+            
+            
+        // }
+        // return ans;
+        
+        return solveTab(matrix);
+    
     }
 };
