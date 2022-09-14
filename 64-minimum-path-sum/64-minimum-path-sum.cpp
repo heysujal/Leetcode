@@ -100,7 +100,7 @@ public:
                 
                 else{
                     int right = INT_MAX;
-                int down = INT_MAX;
+                    int down = INT_MAX;
                 
                 if(i<m-1)
                     down = grid[i][j]+ dp[i+1][j];
@@ -127,10 +127,59 @@ public:
         
     }
     
-    int minPathSum(vector<vector<int>>& grid) {
-        // int ans = INT_MAX;
+    
+    int solveSpace(vector<vector<int>> &grid)
+    {
+        
+        
         int m = grid.size();
         int n = grid[0].size();
+        vector<int> dummy(n, 0);
+        
+        
+         for(int i =m-1 ; i>=0 ; i--)
+        {
+            vector<int> curr(n , 0);
+             
+            for(int j =n-1 ; j>=0 ;j-- )
+            {   
+                if(i==m-1 and j==n-1)
+                   curr[j] = grid[i][j];
+                
+                else{
+                    int right = INT_MAX;
+                    int down = INT_MAX;
+                
+                if(i<m-1)
+                    down = grid[i][j]+ dummy[j];
+                if(j < n-1)
+                    right = grid[i][j] + curr[j+1];
+                
+                curr[j] =  min(down , right);
+                    
+                    
+                    
+                }
+                
+                
+                
+                
+                
+            }
+             
+             
+             dummy = curr;
+            
+        }
+        return dummy[0];
+        
+        
+    }
+    
+    int minPathSum(vector<vector<int>>& grid) {
+        // int ans = INT_MAX;
+        // int m = grid.size();
+        // int n = grid[0].size();
         
         // return solve(0, 0 , grid, m, n, 0);
         
@@ -140,7 +189,9 @@ public:
         
         
         
-        return solveTab(grid);
+        // return solveTab(grid);
+        
+        return solveSpace(grid);
          
         
     }
