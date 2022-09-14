@@ -61,6 +61,57 @@ public:
     }
     
     
+    int solveSpace(vector<vector<int>>& grid)
+    {
+        
+        int m = grid.size();
+        int n = grid[0].size();
+        
+        vector<int> dummy(n , 0);
+        
+        
+        for(int i = 0; i < m ; i++)
+        {
+            
+            vector<int> curr (n , 0);
+            for(int j =  0 ; j < n ;j++)
+            {
+                
+                // for curr[0]
+                if(!i and !j and !grid[i][j])
+                    curr[j] = 1;
+                 
+                
+                // for rest
+                else if(grid[i][j]==1)
+                    curr[j] = 0;
+                
+                else{
+                    
+                    int up = 0;
+                    int left = 0;
+                    if(i>0)
+                        up = dummy[j];
+                    if(j>0)
+                        left = curr[j-1];
+                    
+                    curr[j] = up + left;
+                    
+                    
+                }
+                
+                
+                
+            }
+            
+            dummy = curr;
+            
+        }
+        
+        return dummy[n-1];
+        
+    }
+    
     
     int uniquePathsWithObstacles(vector<vector<int>>& grid) {
         
@@ -70,7 +121,8 @@ public:
         
         // return solveMemo(m-1, n-1, dp, grid);
         
-        return solveTab(m, n , grid);
+        // return solveTab(m, n , grid);
+        return solveSpace(grid);
         
     }
 };
