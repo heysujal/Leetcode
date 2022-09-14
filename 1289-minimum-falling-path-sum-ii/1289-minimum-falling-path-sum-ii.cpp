@@ -132,6 +132,58 @@ public:
         
     }
     
+    
+    int solveSpace(vector<vector<int>>& grid){
+        
+        
+        
+         int n = grid.size();
+         
+         vector<int> dummy(n , 0);
+         vector<int> curr(n, 0);
+        
+        
+        // filling up last row of dp
+        
+           dummy  = grid[n-1];
+        
+        
+         for(int i = n-2 ; i>=0; i--)
+        {
+            
+            for(int j = n-1; j>=0; j--)
+            {
+                int ans = INT_MAX;
+            for(int k = 0;  k < n ; k++)
+            {
+            
+                if(j!=k)
+                {
+                    ans = min(ans ,dummy[k]);
+                }
+            
+            }
+                
+                 
+        
+               curr[j] = grid[i][j] + ans;
+        
+                
+            }
+            
+            dummy = curr;
+        }
+        
+        
+        int ans = INT_MAX;
+        for(int i = 0 ; i < n ; i++)
+            ans = min(ans, dummy[i]);
+            
+       return ans; 
+        
+        
+    }
+    
     int minFallingPathSum(vector<vector<int>>& grid) {
         int n = grid.size();
          
@@ -155,7 +207,9 @@ public:
         
         
         
-        return solveTab(grid);
+        // return solveTab(grid);
+        
+        return solveSpace(grid);
         
     }
 };
