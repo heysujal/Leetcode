@@ -73,13 +73,58 @@ public:
         
         
     }
+    
+    
+    int solveSpace(vector<vector<int>>& triangle)
+    {
+        
+        int m = triangle.size();
+        vector<int> dummyNextRow(m, 0);
+        
+        // dp[i][j] stores answer for [i][j] to the last row
+        
+        // filling in the base cases
+       for(int i = m-1; i>=0 ; i--)
+        {   
+            vector<int> curr(m, 0);
+            
+            
+            for(int j = triangle[i].size()- 1; j>=0; j--)
+            {   
+                
+                if(i==m-1)
+                    curr[j] = triangle[i][j];
+                
+                else{
+                    
+                    int  down = triangle[i][j] + dummyNextRow[j];
+                    int right = triangle[i][j] + dummyNextRow[j+1];
+        
+                    curr[j] = min(down, right);
+                    
+                }
+                
+            }
+            
+            dummyNextRow = curr;
+        }
+        
+        return dummyNextRow[0];
+        
+    }
     int minimumTotal(vector<vector<int>>& triangle) {
-          int m = triangle.size();
+          // int m = triangle.size();
           
-          vector<vector<int>> dp(m ,vector<int>(m, -1));
+          // vector<vector<int>> dp(m ,vector<int>(m, -1));
         
           // return solveMemo(0 , 0 , triangle, dp);
-        return solveTab(triangle);
+        
+        
+        // return solveTab(triangle);
+        
+        
+        return solveSpace(triangle);
+        
         
           
         
