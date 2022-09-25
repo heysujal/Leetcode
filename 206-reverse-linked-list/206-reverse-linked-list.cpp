@@ -36,8 +36,25 @@ public:
         
     }
     
+    ListNode* recursive(ListNode *head)
+    {
+        if(!head)
+            return NULL;
+        if(!head->next)
+            return head;
+        
+        ListNode* curr = head;
+        ListNode* next = head->next;
+        ListNode* newhead =  recursive(next);
+        
+        next->next = curr;
+        curr->next = NULL;
+        
+        return newhead;
+    }
     
     ListNode* reverseList(ListNode* head) {
-        return iterative(head);
+        // return iterative(head);
+        return recursive(head);
     }
 };
