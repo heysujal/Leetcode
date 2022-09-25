@@ -10,19 +10,34 @@
  */
 class Solution {
 public:
+    
+    //iterative way
+    ListNode* iterative(ListNode* head) {
+        
+        if(!head)
+            return NULL;
+        if(!head->next)
+            return head;
+        
+        ListNode* prev = NULL;
+        ListNode* curr = head;
+        ListNode* next ;
+        
+        while(curr)
+        {
+            next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+        }
+        
+        return prev;
+        
+        
+    }
+    
+    
     ListNode* reverseList(ListNode* head) {
-        
-        if(head==NULL or head->next==NULL)
-                return head;
-        
-      
-        
-        ListNode* partialHead = reverseList(head->next);
-        ListNode* tail = head->next;
-        tail->next = head;
-        head->next = NULL;
-        return partialHead;
-         
-        
+        return iterative(head);
     }
 };
