@@ -1,20 +1,52 @@
 class Solution {
 public:
-    vector<vector<int>> permute(vector<int>& nums) {
-        vector<vector<int>> output; // to hold result
-        generatePermutations(nums, output, 0);
-        return output; // return answer
+    
+    int fact(int n)
+    {
+        
+        if(n==0)
+            return 1;
+        
+        return n*fact(n-1);
+        
     }
-private:
-    void generatePermutations(vector<int> nums, vector<vector<int>>&output, int idx) {
-        if (idx == size(nums)) // base case
-		{ 
-            output.emplace_back(nums);
+    
+    void nextPermutation(vector<int>& nums) {
+	    // Optimal Solution Time O(N) & Auxiliary Space O(1)
+	    // Narayana Panditha's Algorithm
+        int len=nums.size(), k=0, l=0;
+        for(k=len-2;k>=0;k--){
+            if(nums[k]<nums[k+1])
+                break;
         }
-        for (int i = idx; i < size(nums); ++i) 
-		{
-            swap(nums[i], nums[idx]); // swap the current element with the next to get another permutation
-            generatePermutations(nums, output, idx + 1); // generate permutations for the next element
+        if(k<0){
+            reverse(nums.begin(),nums.end());
         }
+        else{
+            for(l=len-1;l>k;l--){
+                if(nums[l]>nums[k])
+                    break;
+        }
+            swap(nums[k],nums[l]);
+            reverse(nums.begin()+k+1,nums.end());
+        }
+    }
+    vector<vector<int>> permute(vector<int>& nums) {
+        
+        
+        vector<vector<int>> ans;
+        int n = nums.size();
+        
+        int len = fact(n); 
+        ans.push_back(nums);
+        
+        for(int i = 0 ; i < len-1;i++)
+        {
+            nextPermutation(nums);
+            ans.push_back(nums);
+        }
+        
+        return ans;
+        
     }
 };
