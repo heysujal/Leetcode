@@ -54,6 +54,43 @@ public:
     }
     
     
+    bool solveTab(vector<int>& nums , int target)
+    {
+        int  n = nums.size();
+       
+        
+        vector<vector<int>> dp(n , vector<int>(target+1, 0)); 
+        
+        // first base case
+        
+        for(int i =0 ; i < n ; i++)
+            dp[i][0] = true;
+        
+        if(nums[0] == target) // Why nums[0] == target doesn't work ?
+            dp[0][nums[0]] = true;
+        
+        
+        for(int i = 1 ; i < n; i++)
+        {
+            
+            for(int j = 0; j <= target; j++)
+            {
+            
+                bool op1 = false;
+                if(j >= nums[i])
+                    op1 = dp[i-1][j - nums[i]];
+                bool op2 = dp[i-1][j];
+                
+                dp[i][j] = op1 or op2;
+                
+            }
+            
+        }
+            
+            
+        return dp[n-1][target];
+    }
+    
     
     bool canPartition(vector<int>& nums) {
         
@@ -70,10 +107,10 @@ public:
         // return solve(n-1 , nums, target);
         
         
-        vector<vector<int>> dp(n , vector<int>(target+1, -1));
-        return solveMemo(n-1, nums, target, dp);
+        // vector<vector<int>> dp(n , vector<int>(target+1, -1));
+        // return solveMemo(n-1, nums, target, dp);
         
-    
+    return solveTab(nums, target);
         
     }
 };
