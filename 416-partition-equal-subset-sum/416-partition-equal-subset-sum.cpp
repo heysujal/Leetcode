@@ -91,6 +91,54 @@ public:
         return dp[n-1][target];
     }
     
+    bool solveSpace(vector<int> &nums, int target)
+    {
+
+          int  n = nums.size();
+       
+        
+         
+        vector<int> curr(target + 1, 0), dummy(target + 1, 0);
+        
+        dummy[0] = curr[0] = true;
+        
+        
+        
+        // first base case
+     
+        
+        if(nums[0] == target) // Why nums[0] == target doesn't work ?
+           dummy[nums[0]] = true;
+        
+        
+        for(int i = 1 ; i < n; i++)
+        {
+            
+            for(int j = 1; j <= target; j++)
+            {
+            
+                bool op1 = false;
+                if(j >= nums[i])
+                    op1 = dummy[j - nums[i]];
+                bool op2 = dummy[j];
+                
+                curr[j] = op1 or op2;
+                
+            }
+            
+            
+            dummy = curr;
+            
+        }
+            
+            
+        return curr[target];
+        
+        
+        
+        
+    
+    }
     
     bool canPartition(vector<int>& nums) {
         
@@ -110,7 +158,8 @@ public:
         // vector<vector<int>> dp(n , vector<int>(target+1, -1));
         // return solveMemo(n-1, nums, target, dp);
         
-    return solveTab(nums, target);
+    // return solveTab(nums, target);
+       return solveSpace(nums, target);
         
     }
 };
