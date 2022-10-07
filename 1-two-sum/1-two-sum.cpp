@@ -1,33 +1,24 @@
 class Solution {
 public:
-    
-    
-    
-    vector<int> twoSum(vector<int>& nums, int target) {
-    
+    vector<int> twoSum(vector<int>& arr, int target) {
         
-        int n = nums.size();
-         
-        for(int i  = 0 ; i < n  ; i++){
-            
-            int toFind = target - nums[i];
-            
-            std::vector<int>::iterator  it;
-            
-            it = find(nums.begin() +1+i, nums.end() , toFind);
-            
-            if(it != nums.end()){
-                int idx = it - nums.begin();
-                return {idx, i};
-                
-            }
-            
-            
-            
-        }
-        
-        
-        return {-1, -1};
+        unordered_map<int, int> mp;
+        int n = arr.size();
+        for(int i =0 ; i < n ; i++)
+	    {
+	        if(mp.find(target - arr[i]) != mp.end())
+	        {
+	            
+	            return {mp[target - arr[i]] ,  i};
+	            
+	        }
+	        else{
+	            mp[arr[i]]  = i;
+	        }
+	       
+	    }
+	     
+	    return {-1, -1};
         
         
     }
