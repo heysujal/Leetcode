@@ -31,22 +31,21 @@ public:
             }
             
         }
-        
-        
-         
-        return reqDays;
-        
-        
-    }
+       return reqDays;
+     }
     
     
     int shipWithinDays(vector<int>& weights, int D) {
         
         int ans = -1;
         
-        int low = 1;
+        // we should be able to ship the max weight item 
+        int low = *max_element(weights.begin(), weights.end());
          
         int n = weights.size();
+        
+        // suppose if the D = 1 , then we have to ship all items 
+        // in  1 Day..... So we make it equal to the sum of all weights 
         int high = 0;
         
         for(auto x : weights)
