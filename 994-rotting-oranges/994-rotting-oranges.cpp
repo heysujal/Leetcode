@@ -9,33 +9,47 @@ public:
         int i = p.first;
         int j = p.second;
         
-        if( i - 1 >= 0 and grid[i-1][j] == 1)
+        vector<pair<int, int>> coords= {{-1, 0} , {1 , 0}, {0 , -1}, {0, 1}};
+        
+        for(auto xy : coords)
         {
-            grid[i-1][j] = 2;
-            q.push(make_pair(i-1, j));
-            fresh--;
-        }
             
-        if( i + 1 < m and grid[i + 1][j] == 1)
-        {
-            grid[i+1][j] = 2;
-            q.push(make_pair(i+1, j));
-            fresh--;
-        }
+            int x  = xy.first;
+            int y  = xy.second;
             
-        if( j - 1 >= 0 and grid[i][j - 1] == 1)
-        {
-            grid[i][j - 1] = 2;
-            q.push(make_pair(i, j - 1));
-            fresh--;
-        }
+            if( i + x >= 0 and i + x < m and j + y < n and j + y >= 0 and grid[i+x][j+y] == 1)
+            {
+                grid[i + x][j + y] = 2;
+                q.push(make_pair(i + x, j + y));
+                fresh--;
+            }
             
-        if( j + 1 < n and grid[i][j + 1] == 1)
-        {
-            grid[i][j + 1] = 2;
-            q.push(make_pair(i, j + 1));
-            fresh--;
+            
         }
+        
+        
+        
+            
+//         if( i + 1 < m and grid[i + 1][j] == 1)
+//         {
+//             grid[i+1][j] = 2;
+//             q.push(make_pair(i+1, j));
+//             fresh--;
+//         }
+            
+//         if( j - 1 >= 0 and grid[i][j - 1] == 1)
+//         {
+//             grid[i][j - 1] = 2;
+//             q.push(make_pair(i, j - 1));
+//             fresh--;
+//         }
+            
+//         if( j + 1 < n and grid[i][j + 1] == 1)
+//         {
+//             grid[i][j + 1] = 2;
+//             q.push(make_pair(i, j + 1));
+//             fresh--;
+//         }
             
         
         
