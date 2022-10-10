@@ -45,15 +45,52 @@ public:
     
     }
     
+     bool solveTab(vector<int>& nums) {
+        
+        int n = nums.size();
+        // return solve(0, nums);
+        
+        vector<int> dp(n, 0);
+        
+        dp[n-1] = true;
+        
+        for(int i = n-2 ; i>=0 ; i--)
+        {
+           
+            for(int jump = 1 ; jump <= nums[i] ; jump++)
+            {
+
+                if(i+jump < n and dp[i+jump])
+                     { 
+                        dp[i] = true;
+                        break;
+                     }
+
+            }
+            
+            
+        }
+         
+        
+        return dp[0];
+        
+    }
+    
+ 
+    
+    
+     
     
     bool canJump(vector<int>& nums) {
         
         int n = nums.size();
         // return solve(0, nums);
         
-        vector<int> dp(n, -1);
-        return solveMemo(0, nums, dp);
+        // vector<int> dp(n, -1);
+        // return solveMemo(0, nums, dp);
         
+        return solveTab(nums);
+  
         
     }
 };
