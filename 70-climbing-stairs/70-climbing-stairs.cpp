@@ -33,13 +33,44 @@ public:
         return dp[i] = one + two;
     }
     
+    int solveTab(int n)
+    {
+        vector<int> dp(n + 1, 0);
+        dp[n]  = 1;
+        
+        
+         
+       for(int i = n-1 ; i >= 0; i--)
+       {
+           
+           int one = dp[i+1];
+           
+           int two = 0;
+           
+           if(i+2 <= n)
+               two = dp[i+2];
+           
+           dp[i] = one + two;
+           
+       }
+        
+        
+        
+        return dp[0] ;
+    }
+    
+    
+    
     int climbStairs(int n) {
         
         // return solve(0 , n);
         
-        vector<int> dp(n + 1, -1);
+        // vector<int> dp(n + 1, -1);
         
-        return solveMemo(0, n,dp);
+        // return solveMemo(0, n,dp);
+        
+        
+        return solveTab(n);
         
     }
 };
