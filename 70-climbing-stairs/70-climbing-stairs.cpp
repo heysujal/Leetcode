@@ -60,6 +60,23 @@ public:
     }
     
     
+    int solveSpace(int n)
+    {
+        int one = 1; // for n 
+        int two = 0; // for beyond n
+          
+       for(int i = n-1 ; i >= 0; i--)
+       {     
+           int ans = one + two;
+           two = one;
+           one = ans;
+       }
+        
+        return one;
+    }
+    
+    
+    
     
     int climbStairs(int n) {
         
@@ -70,7 +87,8 @@ public:
         // return solveMemo(0, n,dp);
         
         
-        return solveTab(n);
+        // return solveTab(n);
+        return solveSpace(n);
         
     }
 };
