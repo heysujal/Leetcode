@@ -128,6 +128,43 @@ class Solution{
       
       
   }
+  
+  
+  int solveSpaceUltimate(int price[], int n)
+  {
+      
+            
+      vector<int> prev(n+1, 0);
+      for(int c = 0; c<= n ; c++)
+        prev[c] = c * price[0];
+        
+      for(int i = 1; i < n ; i++)
+      {
+          
+          for(int j = 0; j <= n; j++)
+          {
+              
+              int skip = 0 + prev[j];
+              int pick = -1e9;
+              
+              int rod_length = i + 1;
+              if(rod_length <= j)
+                pick = price[i] + prev[j-rod_length];
+                
+              prev[j]= max(skip, pick);    
+              
+              
+              
+          }
+          
+     
+          
+      }
+      
+      return prev[n];
+      
+      
+  }
  
     int cutRod(int price[], int n) {
         
@@ -141,7 +178,9 @@ class Solution{
         // return solveMemo(n-1,price, n, dp);
         
         // return solveTab(price, n);
-        return solveSpace(price, n);
+        // return solveSpace(price, n);
+        
+        return solveSpaceUltimate(price, n);
         
     }
 };
