@@ -89,12 +89,7 @@ public:
         
          vector<int> prev(size2+1, 0), curr(size2 + 1, 0);
         
-        // iterating for size2
-        for(int q = 0 ; q <= size2 ; q++)
-        {
-                prev[q] = 0;    
-        }
-        
+       
         
         for(int i = 1 ; i <= size1 ; i++)
         {
