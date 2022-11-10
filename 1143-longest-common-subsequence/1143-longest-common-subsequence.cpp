@@ -79,7 +79,45 @@ public:
         
         return dp[size1][size2];
         
+    }    int solveSpace(string &s, string &t) {
+        
+        int size1 = s.size();
+        int size2 = t.size();
+        
+        
+       
+        
+         vector<int> prev(size2+1, 0), curr(size2 + 1, 0);
+        
+        // iterating for size2
+        for(int q = 0 ; q <= size2 ; q++)
+        {
+                prev[q] = 0;    
+        }
+        
+        
+        for(int i = 1 ; i <= size1 ; i++)
+        {
+            
+            for(int j = 1 ; j <= size2 ; j++)
+            {
+                
+                if(s[i-1] == t[j-1])
+                    curr[j] = 1 + prev[j-1];
+                
+                else 
+                    curr[j] = 0 + max(prev[j] , curr[j-1]);                 
+            }
+            
+            prev = curr;
+            
+        }
+        
+        return prev[size2];
+        
     }
+    
+    
     int longestCommonSubsequence(string text1, string text2) {
         
         int size1 = text1.size();
@@ -90,7 +128,7 @@ public:
         // vector<vector<int>> dp(size1, vector<int>(size2, -1));
         // return solveMemo(size1 - 1, size2 - 1, text1, text2,dp);
         
-        return solveTab(text1, text2);
+        return solveSpace(text1, text2);
         
     }
 };
