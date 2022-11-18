@@ -58,6 +58,24 @@ public:
         
         return dp[n];
     }
+        int solveSpace(int n) {
+        
+        vector<int> dp(n+1, 0);
+        int f = 1;
+        int s = 1;
+        
+        for(int i = 2; i <= n ; i++)
+        {
+            
+            int sum = f + s;
+            f = s;
+            s = sum;
+             
+        }
+        
+        
+        return s;
+    }
     
     
     
@@ -67,7 +85,8 @@ public:
         // vector<int> dp(n + 1 , -1);
         // return solveMemo(n, dp);
         
-        return solveTab(n);
+        // return solveTab(n);
+        return solveSpace(n);
         
     }
 };
