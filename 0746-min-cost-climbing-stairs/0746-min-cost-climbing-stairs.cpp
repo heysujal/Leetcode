@@ -37,13 +37,39 @@ public:
         return dp[i] = min(jump1, jump2);
     }
     
-    int minCostClimbingStairs(vector<int>& cost) {
+    
+int solveTab(vector<int>& cost, int start) {
         int n = cost.size();
+    
+        
+        // dp[i] would represent i.....n tak ka answer
+        vector<int> dp(n+1,0);
+        dp[n-1] = cost[n-1];
+    
+        for(int i = n-2; i>= start; i--)
+        {
+            
+            int jump1 = cost[i] + dp[i+1];
+            int jump2 = cost[i] + dp[i+2];
+            
+            dp[i] = min(jump1, jump2);
+            
+            
+        }
+        
+    return dp[start];
+    }
+    int minCostClimbingStairs(vector<int>& cost) {
+        // int n = cost.size();
         // return min(solve(0, cost), solve(1, cost));
         
         // dp[i] would represent i.....n tak ka answer
         
-        vector<int> dp(n+1, -1);
-        return min(solveMemo(0, cost, dp), solveMemo(1, cost, dp));
+        // vector<int> dp(n+1, -1);
+        // return min(solveMemo(0, cost, dp), solveMemo(1, cost, dp));
+        
+        // start is the starting step
+        return min(solveTab(cost, 0), solveTab(cost, 1));
+        
     }
 };
