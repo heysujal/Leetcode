@@ -66,10 +66,10 @@ int fun(vector<int> &nums){
     int n = nums.size();
     // return solve(0, nums);
 //    What is dp[i] represents solution from index i to n-1
-    vector<int> dp(n , -1);
-    return solveMemo(0, nums, dp);
+    // vector<int> dp(n , -1);
+    // return solveMemo(0, nums, dp);
     
-     // return solveSpace(n, nums);
+     return solveSpace(n, nums);
     
 }
     
