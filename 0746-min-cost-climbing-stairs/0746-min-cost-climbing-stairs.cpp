@@ -58,6 +58,25 @@ int solveTab(vector<int>& cost, int start) {
         }
         
     return dp[start];
+    }int solveSpace(vector<int>& cost, int start) {
+        int n = cost.size();
+        int f = cost[n-1];
+        int s = 0;
+    
+        for(int i = n-2; i>= start; i--)
+        {
+            
+            int jump1 = cost[i] + f;
+            int jump2 = cost[i] + s;
+            
+            int sum  = min(jump1, jump2);
+            s = f;
+            f = sum;
+            
+            
+        }
+        
+    return f;
     }
     int minCostClimbingStairs(vector<int>& cost) {
         // int n = cost.size();
@@ -69,7 +88,8 @@ int solveTab(vector<int>& cost, int start) {
         // return min(solveMemo(0, cost, dp), solveMemo(1, cost, dp));
         
         // start is the starting step
-        return min(solveTab(cost, 0), solveTab(cost, 1));
+        // return min(solveTab(cost, 0), solveTab(cost, 1));
+        return min(solveSpace(cost, 0), solveSpace(cost, 1));
         
     }
 };
