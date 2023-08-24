@@ -118,7 +118,7 @@ public:
     }
     void traverseLeaf(Node* root, vector<int> &ans){
         if(!root) return;
-        if(!root->left and !root->right){
+        if(isLeaf(root)){
             ans.push_back(root->data);
             return;
         } 
