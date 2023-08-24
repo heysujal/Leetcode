@@ -103,60 +103,50 @@ struct Node
     Node* left, * right;
 }; */
 
-/* A binary tree Node
-struct Node
-{
-    int data;
-    Node* left, * right;
-}; */
-
 class Solution {
 public:
     bool isLeaf(Node* root){
         return !root->left and !root->right;
     }
-    void addLeftBoundary(Node* root, vector<int> &ans){
-        Node* curr = root->left;
-        while(curr){
-            if(!isLeaf(curr)) ans.push_back(curr->data);
-            if(curr->left) curr = curr->left;
-            else curr = curr->right;
-        }
+    void traverseLeft(Node* root, vector<int> &ans){
+         Node* curr = root;
+         while(curr){
+             if(!isLeaf(curr)) ans.push_back(curr->data);
+             if(curr->left) curr = curr->left;
+             else curr = curr->right;
+         }
     }
-    void addLeaves(Node* root, vector<int> &ans){
-        if(!root)
-            return;
-        if(isLeaf(root)){
+    void traverseLeaf(Node* root, vector<int> &ans){
+        if(!root) return;
+        if(!root->left and !root->right){
             ans.push_back(root->data);
-            return;   
-        }
-        addLeaves(root->left, ans);
-        addLeaves(root->right, ans);
+            return;
+        } 
+        traverseLeaf(root->left, ans);
+        traverseLeaf(root->right, ans);
     }
-    void addRightBoundary(Node* root, vector<int> &ans){
-        Node* curr = root->right;
-        vector<int> temp;
-        while(curr){
-            if(!isLeaf(curr)) temp.push_back(curr->data);
-            if(curr->right) curr = curr->right;
-            else curr = curr->left;
-        }
-        int n = temp.size();
-        for(int i = n-1; i >= 0; i--){
-            ans.push_back(temp[i]);
-        }
+    void traverseRight(Node* root, vector<int> &ans){
+        Node* curr = root;
+        stack<int> st;
+         while(curr){
+             if(!isLeaf(curr)) st.push(curr->data);
+             if(curr->right) curr = curr->right;
+             else curr = curr->left;
+         }
+         while(!st.empty()){
+             ans.push_back(st.top());
+             st.pop();
+         }
     }
-    
     vector <int> boundary(Node *root)
     {
+        if(!root) return {};
+        if(isLeaf(root)) return {root->data};
         vector<int> ans;
-        if(!root) return ans;
-        if(!root->left and !root->right)
-            return {root->data};
         ans.push_back(root->data);
-        addLeftBoundary(root,ans);
-        addLeaves(root,ans);
-        addRightBoundary(root,ans);
+        traverseLeft(root->left, ans);
+        traverseLeaf(root, ans);
+        traverseRight(root->right, ans);
         return ans;
     }
 };
