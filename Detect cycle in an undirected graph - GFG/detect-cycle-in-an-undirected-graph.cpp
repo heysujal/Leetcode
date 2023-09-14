@@ -10,20 +10,20 @@ class Solution {
         vis[i] = true;
         for(auto it : adj[i]){
             if(!vis[it]){
-                if(dfs(it, i, vis, adj))
-                    return true;
+                if(!dfs(it, i, vis, adj))
+                    return false;
             }else{
                 if(it != parent)
-                    return true;
+                    return false;
             }
         }
-        return false;
+        return true;
     }
     bool isCycle(int V, vector<int> adj[]) {
         vector<bool> vis(V, false);
         for(int i = 0; i<V; i++){
             if(!vis[i]){
-                if(dfs(i, -1, vis, adj))
+                if(!dfs(i, -1, vis, adj))
                     return true;
             }
         }
